@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Formik } from 'formik';
+import { addData } from "../services/SpecialFunctions"
 
 const AddRefund = ( props ) =>{
     const [name, setName] = useState()
@@ -9,75 +9,62 @@ const AddRefund = ( props ) =>{
     const [description, setDescription] = useState()
     const [totalAmount, setTotalAmount] = useState()
 
+    const dbURL = "http://localhost:5000/refunds"
+
     const addRefund = (event) => {
+      const newDate = new Date()
+
         event.preventDefault();
+        const newRefund = {
+          name: name,
+          phone: phone,
+          orderDate: orderDate,
+          callDate: `${newDate.getFullYear()}-${(newDate.getMonth()+1)}-${newDate.getDate()}`,
+          orderNumber: orderNumber,
+          description: description,
+          totalAmount: totalAmount,
+          status: "awaiting approval",
+        }
+        addData( dbURL , newRefund )
+        props.setRefunds([...props.refunds, newRefund])
         props.setAdd(false)
       }
     return (
-        <div>
-          <Formik
-            initialValues={{ 
-              name:'', 
-              phone:'', 
-              orderDate:'',  
-              description: '', 
-              orderNumber: 0, 
-              totalAmount: 0, 
-            }}
-            validate={values => {
-              const errors = {};
-              if (!values.name) {
-                errors.name = 'Required';
-              } else if (
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.name)
-                ) {
-                errors.name = 'Invalid email address';
-              }
-              return errors;
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-              }, 400);
-            }}
-          >
-
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-            /* and other goodies */
-            }) => (
-              <form onSubmit={handleSubmit}>
-              <input
-              type="text"
-              name="name"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.name}
-              />
-              {errors.name && touched.name && errors.name}
-
-              <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-              />
-              {errors.password && touched.password && errors.password}
-              <button type="submit" disabled={isSubmitting}>
-              Submit
-              </button>
-              </form>
-          )}
-          </Formik>
-  
+        <div className="form">
+          <form onSubmit={addRefund} className="formRow">
+            <label>
+                Name:
+                <input type="text" value={name} onChange={(e)=> setName(e.target.value)} />
+            </label>
+            <label>
+                Phone:
+                <input type="number" value={phone} onChange={(e)=> setPhone(e.target.value)}  />
+            </label>
+            <label>
+                Order Number:
+                <input type="text" value={orderNumber} onChange={(e)=> setOrderNumber(e.target.value)} />
+            </label>
+            <label>
+                Order Date:
+                <input type="date" value={orderDate} onChange={(e)=> setOrderDate(e.target.value)} />
+            </label>
+            <div className="description">
+                <label className="description">
+                    Description:
+                    <textarea rows={4} value={description} onChange={(e)=> setDescription(e.target.value)}/>
+                </label>
+            </div>
+            <div className="totalAmount">
+                <label>
+                    Total:
+                    <input type="number" maxLength={6} value={totalAmount} onChange={(e)=> setTotalAmount(e.target.value)}/>
+                </label>
+            </div>
+            <div className="button">
+                <button onClick={()=> props.setAdd(false)}> Cancel</button>
+                <input type="submit" value="Confirm" />
+            </div>
+        </form>
       </div>
     );
   }

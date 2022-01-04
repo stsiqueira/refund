@@ -7,9 +7,18 @@ const CardList = ( props ) =>{
   return (
     <div className="Cards">
       {
-        props.refunds.map((refund)=>{
+        props.refunds.map((refund, index)=>{
+
           return(
-            <CardItem refund={refund} key={refund.orderNumber}/>
+            <div key={refund.id}>
+              <p >{
+                index == 0 ?
+                refund.callDate
+                : props.refunds[index].callDate == props.refunds[index-1].callDate ? "" : refund.callDate
+                }</p>
+
+              <CardItem refund={refund}  ShowDetail={props.ShowDetail}/>
+            </div>
           )
 
         })

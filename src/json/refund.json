@@ -1,35 +1,87 @@
-
 {
-    "refunds":[
-        {
-            "name":"THIAGO", 
-            "phone": 2366688886, 
-            "orderDate":"2021/12/24", 
-            "callDate": "2021/12/25", 
-            "description": "apples in bad Quality, refund $2", 
-            "orderNumber":12345552, 
-            "totalAmount": 2, 
-            "status": "completed"
-        },
-        {
-            "name":"SILVA", 
-            "phone": 2366688887, 
-            "orderDate":"2021/12/24", 
-            "callDate": "2021/12/25", 
-            "description": "didn't get pack of coke. refund $10", 
-            "orderNumber":12345553, 
-            "totalAmount": 10, 
-            "status": "Pending"
-        },
-        {
-            "name":"SIQUEIRA", 
-            "phone": 2366688888, 
-            "orderDate":"2021/12/23", 
-            "callDate": "2021/12/23", 
-            "description": "missing tuna, refund $40", 
-            "orderNumber":12345554, 
-            "totalAmount": 40, 
-            "status": "waiting approval"
-        }
-    ]
+  "refunds": [
+    {
+      "id": 1,
+      "name": "THIAGO",
+      "phone": 2366688886,
+      "orderDate": "2021/12/24",
+      "callDate": "2021/12/21",
+      "description": "apples in bad Quality, refund $2",
+      "orderNumber": 12345552,
+      "totalAmount": 2,
+      "approved": true,
+      "status": "completed"
+    },
+    {
+      "id": 2,
+      "name": "SILVA",
+      "phone": 2366688887,
+      "orderDate": "2021/12/24",
+      "callDate": "2021/12/21",
+      "description": "didn't get pack of coke. refund $10",
+      "orderNumber": 12345553,
+      "totalAmount": 10.89,
+      "approved": false,
+      "status": "Pending"
+    },
+    {
+      "id": 3,
+      "name": "SIQUEIRA",
+      "phone": 2366688888,
+      "orderDate": "2021/12/23",
+      "callDate": "2021/12/22",
+      "description": "missing tuna, refund $40",
+      "orderNumber": 12345554,
+      "totalAmount": 40,
+      "approved": false,
+      "status": "waiting approval"
+    },
+    {
+      "id": 4,
+      "name": "THIAGO 2",
+      "phone": 2366688886,
+      "orderDate": "2021/12/24",
+      "callDate": "2021/12/22",
+      "description": "apples in bad Quality, refund $2",
+      "orderNumber": 12345552,
+      "totalAmount": 2,
+      "approved": true,
+      "status": "completed"
+    },
+    {
+      "id": 5,
+      "name": "SILVA 2",
+      "phone": 2366688887,
+      "orderDate": "2021/12/24",
+      "callDate": "2021/12/22",
+      "description": "didn't get pack of coke. refund $10",
+      "orderNumber": 12345553,
+      "totalAmount": 10.89,
+      "approved": false,
+      "status": "Pending"
+    },
+    {
+      "id": 6,
+      "name": "SIQUEIRA 2",
+      "phone": 2366688888,
+      "orderDate": "2021/12/23",
+      "callDate": "2021/12/23",
+      "description": "missing tuna, refund $40",
+      "orderNumber": 12345554,
+      "totalAmount": 40,
+      "approved": false,
+      "status": "waiting approval"
+    },
+    {
+      "name": "Kaori",
+      "phone": "2345434433",
+      "orderDate": "2022-01-02",
+      "callDate": "2022-1-3",
+      "orderNumber": "123456555",
+      "description": "didn't receive my order. ",
+      "totalAmount": "120",
+      "status": "awaiting approval",
+      "id": 7
+    }
+  ]
 }

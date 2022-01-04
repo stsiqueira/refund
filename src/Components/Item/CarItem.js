@@ -1,22 +1,30 @@
+import NumberFormat from 'react-number-format';
 
 
 const CardItem = ( props ) =>{
+
   return (
-    <div className="Card">
+    <div className="Card" onClick={()=> props.ShowDetail(props.refund.id)}>
+      <div className="Row Row0" style={{background: props.refund.approved ? 'green' : 'red'}}>
+
+      </div>
       <div className="Row Row1">
         <div className="name">
-          <p>Name: {props.refund.name} ({ props.refund.phone })</p>
+          <p><span style={{fontWeight:'bold'}}>Name:</span> {props.refund.name}  
+          <NumberFormat value={props.refund.phone}  displayType={'text'} format="  +1 (###) ###-####"/>
+            </p>
         </div>
-        <p> {props.refund.totalAmount}</p>
+        <NumberFormat value={props.refund.totalAmount} displayType={'text'} thousandSeparator={true} prefix={'$'} fixedDecimalScale={true} decimalScale={2}/>
+
       </div>
       <div className="Row Row2">
-        <p>Order number: {props.refund.orderNumber}</p>
-        <p>Order date: {props.refund.orderDate}</p>
-        <p>Call date: {props.refund.callDate}</p>
+        <p><span style={{fontWeight:'bold'}}>Order number:</span> {props.refund.orderNumber}</p>
+        <p><span style={{fontWeight:'bold'}}>Order date:</span>  {props.refund.orderDate}</p>
+        <p><span style={{fontWeight:'bold'}}>Call date:</span>  {props.refund.callDate}</p>
       </div>
       <div className="Row Row3">
-        <p>Description:</p>
-        <p>{props.refund.description}</p>
+        <p style={{fontWeight:'bold'}}>Description:</p>
+        <p className='description'>{props.refund.description}</p>
       </div>
 
     </div>
